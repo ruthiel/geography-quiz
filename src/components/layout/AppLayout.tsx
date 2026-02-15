@@ -3,7 +3,7 @@
  * Provides consistent layout structure with header and main content area
  */
 
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Header } from './Header';
 import './AppLayout.css';
 

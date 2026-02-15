@@ -3,7 +3,7 @@
  * Displays quiz results and statistics
  */
 
-import { QuizStats } from '../../types/quiz.types';
+import type { QuizStats } from '../../types/quiz.types';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import './ResultsScreen.css';

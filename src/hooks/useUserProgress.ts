@@ -5,8 +5,9 @@
 
 import { useCallback } from 'react';
 import { useLocalStorage } from './useLocalStorage';
-import { UserProgress, createDefaultUserProgress } from '../types/user.types';
-import { QuizStats } from '../types/quiz.types';
+import type { UserProgress } from '../types/user.types';
+import { createDefaultUserProgress } from '../types/user.types';
+import type { QuizStats } from '../types/quiz.types';
 import { STORAGE_KEYS } from '../services/storage/storageKeys';
 
 interface UseUserProgressResult {

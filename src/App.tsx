@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { QuizMode, QuizStats } from './types/quiz.types';
+import type { QuizMode, QuizStats } from './types/quiz.types';
 import { useUserProgress } from './hooks/useUserProgress';
 import { AppLayout } from './components/layout/AppLayout';
 import { HomeScreen } from './components/screens/HomeScreen';

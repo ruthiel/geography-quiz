@@ -3,8 +3,8 @@
  */
 
 import { useState, useCallback } from 'react';
-import { QuizMode, QuizQuestion, QuizAnswer, QuizSession, QuizStats } from '../types/quiz.types';
-import { NormalizedCountry } from '../types/country.types';
+import type { QuizMode, QuizQuestion, QuizAnswer, QuizSession, QuizStats } from '../types/quiz.types';
+import type { NormalizedCountry } from '../types/country.types';
 import { generateQuiz } from '../utils/quizGenerator';
 import { calculateScore } from '../services/gamification/scoreCalculator';
 

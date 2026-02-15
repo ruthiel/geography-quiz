@@ -16,7 +16,6 @@ export function QuizResult({
   isCorrect,
   pointsEarned,
   correctAnswer,
-  selectedAnswer,
 }: QuizResultProps) {
   return (
     <div className={`quiz-result quiz-result--${isCorrect ? 'correct' : 'incorrect'}`}>

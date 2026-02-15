@@ -2,8 +2,8 @@
  * Quiz question generation logic
  */
 
-import { NormalizedCountry } from '../types/country.types';
-import { QuizMode, QuizQuestion } from '../types/quiz.types';
+import type { NormalizedCountry } from '../types/country.types';
+import type { QuizMode, QuizQuestion } from '../types/quiz.types';
 import { shuffleArray } from './shuffleArray';
 
 /**
