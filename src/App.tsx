@@ -9,13 +9,15 @@ import type { Achievement } from './types/gamification.types';
 import { useUserProgress } from './hooks/useUserProgress';
 import { useAchievements } from './hooks/useAchievements';
 import { useStreak } from './hooks/useStreak';
+import { useLeaderboard } from './hooks/useLeaderboard';
 import { AppLayout } from './components/layout/AppLayout';
 import { HomeScreen } from './components/screens/HomeScreen';
 import { QuizScreen } from './components/screens/QuizScreen';
 import { ResultsScreen } from './components/screens/ResultsScreen';
 import { AchievementsScreen } from './components/screens/AchievementsScreen';
+import { LeaderboardScreen } from './components/screens/LeaderboardScreen';
 
-type Screen = 'home' | 'quiz' | 'results' | 'achievements';
+type Screen = 'home' | 'quiz' | 'results' | 'achievements' | 'leaderboard';
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
@@ -26,6 +28,7 @@ function App() {
   const { userProgress, updateAfterQuiz } = useUserProgress();
   const { achievements, checkAndUnlock } = useAchievements();
   const { streaks } = useStreak();
+  const { entries: leaderboardEntries, addEntry: addLeaderboardEntry } = useLeaderboard();
 
   const handleStartQuiz = (mode: QuizMode) => {
     setSelectedMode(mode);
@@ -35,6 +38,9 @@ function App() {
   const handleQuizComplete = (stats: QuizStats) => {
     setQuizStats(stats);
     updateAfterQuiz(stats);
+
+    // Add to leaderboard
+    addLeaderboardEntry(stats, userProgress.playerName, userProgress.currentLevel);
 
     // Check for newly unlocked achievements
     const unlocked = checkAndUnlock(
@@ -62,6 +68,10 @@ function App() {
     setCurrentScreen('achievements');
   };
 
+  const handleViewLeaderboard = () => {
+    setCurrentScreen('leaderboard');
+  };
+
   return (
     <AppLayout
       showHeader={currentScreen !== 'quiz'}
@@ -73,6 +83,7 @@ function App() {
           userProgress={userProgress}
           onStartQuiz={handleStartQuiz}
           onViewAchievements={handleViewAchievements}
+          onViewLeaderboard={handleViewLeaderboard}
         />
       )}
 
@@ -89,6 +100,7 @@ function App() {
           stats={quizStats}
           onRetry={handleRetry}
           onHome={handleGoHome}
+          onViewLeaderboard={handleViewLeaderboard}
           newlyUnlockedAchievements={newlyUnlockedAchievements}
         />
       )}
@@ -96,6 +108,14 @@ function App() {
       {currentScreen === 'achievements' && (
         <AchievementsScreen
           achievements={achievements}
+          onBack={handleGoHome}
+        />
+      )}
+
+      {currentScreen === 'leaderboard' && (
+        <LeaderboardScreen
+          entries={leaderboardEntries}
+          currentUserId={userProgress.id}
           onBack={handleGoHome}
         />
       )}

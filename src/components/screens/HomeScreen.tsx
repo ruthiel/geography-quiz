@@ -14,9 +14,10 @@ export interface HomeScreenProps {
   userProgress: UserProgress;
   onStartQuiz: (mode: QuizMode) => void;
   onViewAchievements?: () => void;
+  onViewLeaderboard?: () => void;
 }
 
-export function HomeScreen({ userProgress, onStartQuiz, onViewAchievements }: HomeScreenProps) {
+export function HomeScreen({ userProgress, onStartQuiz, onViewAchievements, onViewLeaderboard }: HomeScreenProps) {
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat().format(num);
   };
@@ -61,12 +62,19 @@ export function HomeScreen({ userProgress, onStartQuiz, onViewAchievements }: Ho
           <LevelIndicator totalPoints={userProgress.totalPoints} showProgress size="medium" />
         </Card>
 
-        {/* Achievements button */}
-        {onViewAchievements && (
-          <Button variant="secondary" size="large" fullWidth onClick={onViewAchievements}>
-            🏆 View Achievements
-          </Button>
-        )}
+        {/* Action buttons */}
+        <div className="home-screen__actions">
+          {onViewAchievements && (
+            <Button variant="secondary" size="large" fullWidth onClick={onViewAchievements}>
+              🏆 Achievements
+            </Button>
+          )}
+          {onViewLeaderboard && (
+            <Button variant="secondary" size="large" fullWidth onClick={onViewLeaderboard}>
+              📊 Leaderboard
+            </Button>
+          )}
+        </div>
 
         {/* Quiz mode selection */}
         <div className="home-screen__modes">

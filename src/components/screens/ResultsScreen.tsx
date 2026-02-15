@@ -16,10 +16,11 @@ export interface ResultsScreenProps {
   stats: QuizStats;
   onRetry: () => void;
   onHome: () => void;
+  onViewLeaderboard?: () => void;
   newlyUnlockedAchievements?: Achievement[];
 }
 
-export function ResultsScreen({ stats, onRetry, onHome, newlyUnlockedAchievements = [] }: ResultsScreenProps) {
+export function ResultsScreen({ stats, onRetry, onHome, onViewLeaderboard, newlyUnlockedAchievements = [] }: ResultsScreenProps) {
   const [showAchievementModal, setShowAchievementModal] = useState(newlyUnlockedAchievements.length > 0);
   const formatTime = (seconds: number) => {
     return `${seconds.toFixed(1)}s`;
@@ -126,6 +127,11 @@ export function ResultsScreen({ stats, onRetry, onHome, newlyUnlockedAchievement
           <Button variant="primary" size="large" fullWidth onClick={onRetry}>
             Play Again
           </Button>
+          {onViewLeaderboard && (
+            <Button variant="secondary" size="large" fullWidth onClick={onViewLeaderboard}>
+              📊 View Leaderboard
+            </Button>
+          )}
           <Button variant="secondary" size="large" fullWidth onClick={onHome}>
             Back to Home
           </Button>

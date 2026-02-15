@@ -58,6 +58,16 @@
   font-weight: var(--font-weight-medium);
 }
 
+/* Action buttons */
+.home-screen__actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.home-screen__actions > * {
+  flex: 1;
+}
+
 /* Quiz modes section */
 .home-screen__modes {
   margin-top: var(--space-10);
