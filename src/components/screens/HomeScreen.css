@@ -1,0 +1,138 @@
+/**
+ * Home screen styles
+ */
+
+.home-screen {
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  padding: var(--space-4);
+}
+
+.home-screen__container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--space-4) 0;
+}
+
+.home-screen__header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.home-screen__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.home-screen__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Stats section */
+.home-screen__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.home-screen__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.home-screen__stat-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.home-screen__stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Quiz modes section */
+.home-screen__modes {
+  margin-top: var(--space-10);
+}
+
+.home-screen__section-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--space-6);
+  color: var(--color-text);
+}
+
+.home-screen__mode-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.home-screen__mode-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.home-screen__mode-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.home-screen__mode-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-2);
+}
+
+.home-screen__mode-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.home-screen__mode-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.home-screen__mode-stats {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Responsive layout */
+@media (min-width: 640px) {
+  .home-screen {
+    padding: var(--space-6);
+  }
+
+  .home-screen__title {
+    font-size: var(--font-size-4xl);
+  }
+
+  .home-screen__mode-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-screen__mode-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

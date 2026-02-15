@@ -1,35 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/**
+ * Main App component
+ * Handles screen navigation and global state
+ */
+
+import { useState } from 'react';
+import { QuizMode, QuizStats } from './types/quiz.types';
+import { useUserProgress } from './hooks/useUserProgress';
+import { AppLayout } from './components/layout/AppLayout';
+import { HomeScreen } from './components/screens/HomeScreen';
+import { QuizScreen } from './components/screens/QuizScreen';
+import { ResultsScreen } from './components/screens/ResultsScreen';
+
+type Screen = 'home' | 'quiz' | 'results';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentScreen, setCurrentScreen] = useState<Screen>('home');
+  const [selectedMode, setSelectedMode] = useState<QuizMode>('flags');
+  const [quizStats, setQuizStats] = useState<QuizStats | null>(null);
+
+  const { userProgress, updateAfterQuiz } = useUserProgress();
+
+  const handleStartQuiz = (mode: QuizMode) => {
+    setSelectedMode(mode);
+    setCurrentScreen('quiz');
+  };
+
+  const handleQuizComplete = (stats: QuizStats) => {
+    setQuizStats(stats);
+    updateAfterQuiz(stats);
+    setCurrentScreen('results');
+  };
+
+  const handleRetry = () => {
+    setCurrentScreen('quiz');
+  };
+
+  const handleGoHome = () => {
+    setCurrentScreen('home');
+    setQuizStats(null);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <AppLayout
+      showHeader={currentScreen !== 'quiz'}
+      totalPoints={userProgress.totalPoints}
+      currentLevel={userProgress.currentLevel}
+    >
+      {currentScreen === 'home' && (
+        <HomeScreen
+          userProgress={userProgress}
+          onStartQuiz={handleStartQuiz}
+        />
+      )}
+
+      {currentScreen === 'quiz' && (
+        <QuizScreen
+          mode={selectedMode}
+          onComplete={handleQuizComplete}
+          onExit={handleGoHome}
+        />
+      )}
+
+      {currentScreen === 'results' && quizStats && (
+        <ResultsScreen
+          stats={quizStats}
+          onRetry={handleRetry}
+          onHome={handleGoHome}
+        />
+      )}
+    </AppLayout>
+  );
 }
 
-export default App
+export default App;
