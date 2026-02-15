@@ -2,7 +2,8 @@
  * Error boundary component for graceful error handling
  */
 
-import { Component, ReactNode } from 'react';
+import { Component } from 'react';
+import type { ReactNode } from 'react';
 import { Card } from './Card';
 import { Button } from './Button';
 import './ErrorBoundary.css';

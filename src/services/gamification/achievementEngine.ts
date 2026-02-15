@@ -2,9 +2,9 @@
  * Achievement unlock logic and progress tracking
  */
 
-import type { Achievement } from '../types/gamification.types';
-import type { QuizStats } from '../types/quiz.types';
-import type { UserProgress } from '../types/user.types';
+import type { Achievement } from '../../types/gamification.types';
+import type { QuizStats } from '../../types/quiz.types';
+import type { UserProgress } from '../../types/user.types';
 import { ACHIEVEMENT_DEFINITIONS } from '../../constants/achievements';
 
 /**
