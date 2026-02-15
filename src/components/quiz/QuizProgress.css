@@ -1,0 +1,25 @@
+/**
+ * Quiz progress styles
+ */
+
+.quiz-progress {
+  width: 100%;
+}
+
+.quiz-progress__header {
+  margin-bottom: var(--space-4);
+}
+
+.quiz-progress__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .quiz-progress__title {
+    font-size: var(--font-size-xl);
+  }
+}

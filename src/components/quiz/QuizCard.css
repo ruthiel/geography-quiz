@@ -1,0 +1,47 @@
+/**
+ * Quiz card styles
+ */
+
+.quiz-card {
+  width: 100%;
+}
+
+.quiz-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.quiz-card__question {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  color: var(--color-text);
+  margin: 0;
+  line-height: var(--line-height-normal);
+}
+
+.quiz-card__image-container {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--color-border);
+}
+
+.quiz-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .quiz-card__question {
+    font-size: var(--font-size-2xl);
+  }
+}
