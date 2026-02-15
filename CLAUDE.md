@@ -8,6 +8,10 @@ Geography quiz application built with React 19, TypeScript, and Vite.
 
 **Status**: ✅ **Production Ready** - Full implementation complete with all planned features
 
+**Live Demo**: [https://ruthiel.github.io/geography-quiz/](https://ruthiel.github.io/geography-quiz/)
+
+**Repository**: [https://github.com/ruthiel/geography-quiz](https://github.com/ruthiel/geography-quiz)
+
 ### Implemented Features
 
 **Quiz Modes:**
@@ -61,6 +65,26 @@ npm run lint
 # Preview production build
 npm run preview
 ```
+
+## Deployment
+
+**Status**: ✅ Deployed to GitHub Pages
+
+**Live URL**: [https://ruthiel.github.io/geography-quiz/](https://ruthiel.github.io/geography-quiz/)
+
+**Deployment Method**: Automatic deployment via GitHub Actions on push to `master` branch
+
+**Configuration**:
+- Base path set in `vite.config.ts`: `/geography-quiz/`
+- GitHub Actions workflow: `.github/workflows/deploy.yml`
+- GitHub Pages settings: Source = GitHub Actions
+
+**Deployment Process**:
+1. Push changes to `master` branch
+2. GitHub Actions automatically runs build
+3. Deploys to GitHub Pages (2-3 minutes)
+
+For detailed deployment setup and troubleshooting, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## Project Structure
 

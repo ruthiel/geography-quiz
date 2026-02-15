@@ -6,6 +6,12 @@ An engaging, mobile-first geography quiz game that tests your knowledge of count
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)
 ![Vite](https://img.shields.io/badge/Vite-7.3-purple)
 
+## 🎯 Live Demo
+
+**[Play Now: https://ruthiel.github.io/geography-quiz/](https://ruthiel.github.io/geography-quiz/)**
+
+**Repository**: [github.com/ruthiel/geography-quiz](https://github.com/ruthiel/geography-quiz)
+
 ## 🎮 About The Game
 
 Geography Quiz is an interactive learning application designed to help you master world geography through gamification. Challenge yourself across multiple quiz modes, build streaks, level up, and track your progress as you explore countries from around the world.
@@ -52,15 +58,21 @@ Geography Quiz is an interactive learning application designed to help you maste
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Play Online
+
+No installation required! Just visit **[https://ruthiel.github.io/geography-quiz/](https://ruthiel.github.io/geography-quiz/)** to start playing.
+
+### Local Development
+
+#### Prerequisites
 - Node.js 16.x or higher
 - npm 7.x or higher
 
-### Installation
+#### Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/ruthiel/geography-quiz.git
 cd geography-quiz
 
 # Install dependencies
@@ -87,6 +99,14 @@ npm run preview
 # Lint code
 npm run lint
 ```
+
+### Deployment
+
+The app is automatically deployed to GitHub Pages via GitHub Actions whenever changes are pushed to the `master` branch.
+
+**Live URL**: [https://ruthiel.github.io/geography-quiz/](https://ruthiel.github.io/geography-quiz/)
+
+For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## 🎲 How to Play
 
@@ -153,16 +173,17 @@ The app uses a custom CSS design system with:
 - Consistent color palette with semantic naming
 - Touch-friendly interaction targets
 
-## 📊 Features in Development
+## 📊 Feature Status
 
 - ✅ Core quiz functionality
-- ✅ Multiple quiz modes
-- ✅ Level system
-- ✅ Streak tracking
-- 🚧 Achievement system
-- 🚧 Local leaderboard
-- 🚧 Advanced animations
-- 🚧 Accessibility improvements
+- ✅ Multiple quiz modes (Flags, Capitals, Currencies, Mixed)
+- ✅ 6-level progression system
+- ✅ Streak tracking with multipliers
+- ✅ Achievement system (16 achievements)
+- ✅ Local leaderboard (top 100 scores)
+- ✅ Advanced animations and transitions
+- ✅ Accessibility features (ARIA, keyboard nav, reduced motion)
+- ✅ Deployed to GitHub Pages
 
 ## 🌐 Data Source
 
