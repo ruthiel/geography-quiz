@@ -1,0 +1,29 @@
+/**
+ * Achievements list styles
+ */
+
+.achievements-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.achievements-list-empty {
+  text-align: center;
+  padding: var(--space-8);
+  color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .achievements-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .achievements-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

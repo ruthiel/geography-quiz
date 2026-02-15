@@ -5,20 +5,27 @@
 
 import { useState } from 'react';
 import type { QuizMode, QuizStats } from './types/quiz.types';
+import type { Achievement } from './types/gamification.types';
 import { useUserProgress } from './hooks/useUserProgress';
+import { useAchievements } from './hooks/useAchievements';
+import { useStreak } from './hooks/useStreak';
 import { AppLayout } from './components/layout/AppLayout';
 import { HomeScreen } from './components/screens/HomeScreen';
 import { QuizScreen } from './components/screens/QuizScreen';
 import { ResultsScreen } from './components/screens/ResultsScreen';
+import { AchievementsScreen } from './components/screens/AchievementsScreen';
 
-type Screen = 'home' | 'quiz' | 'results';
+type Screen = 'home' | 'quiz' | 'results' | 'achievements';
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('home');
   const [selectedMode, setSelectedMode] = useState<QuizMode>('flags');
   const [quizStats, setQuizStats] = useState<QuizStats | null>(null);
+  const [newlyUnlockedAchievements, setNewlyUnlockedAchievements] = useState<Achievement[]>([]);
 
   const { userProgress, updateAfterQuiz } = useUserProgress();
+  const { achievements, checkAndUnlock } = useAchievements();
+  const { streaks } = useStreak();
 
   const handleStartQuiz = (mode: QuizMode) => {
     setSelectedMode(mode);
@@ -28,6 +35,16 @@ function App() {
   const handleQuizComplete = (stats: QuizStats) => {
     setQuizStats(stats);
     updateAfterQuiz(stats);
+
+    // Check for newly unlocked achievements
+    const unlocked = checkAndUnlock(
+      stats,
+      userProgress,
+      streaks.correct.best,
+      streaks.daily.current
+    );
+    setNewlyUnlockedAchievements(unlocked);
+
     setCurrentScreen('results');
   };
 
@@ -38,6 +55,11 @@ function App() {
   const handleGoHome = () => {
     setCurrentScreen('home');
     setQuizStats(null);
+    setNewlyUnlockedAchievements([]);
+  };
+
+  const handleViewAchievements = () => {
+    setCurrentScreen('achievements');
   };
 
   return (
@@ -50,6 +72,7 @@ function App() {
         <HomeScreen
           userProgress={userProgress}
           onStartQuiz={handleStartQuiz}
+          onViewAchievements={handleViewAchievements}
         />
       )}
 
@@ -66,6 +89,14 @@ function App() {
           stats={quizStats}
           onRetry={handleRetry}
           onHome={handleGoHome}
+          newlyUnlockedAchievements={newlyUnlockedAchievements}
+        />
+      )}
+
+      {currentScreen === 'achievements' && (
+        <AchievementsScreen
+          achievements={achievements}
+          onBack={handleGoHome}
         />
       )}
     </AppLayout>

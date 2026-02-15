@@ -164,6 +164,13 @@
   }
 }
 
+/* Achievement modal */
+.results-screen__achievements {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
 /* Responsive adjustments */
 @media (min-width: 640px) {
   .results-screen {

@@ -13,9 +13,10 @@ import './HomeScreen.css';
 export interface HomeScreenProps {
   userProgress: UserProgress;
   onStartQuiz: (mode: QuizMode) => void;
+  onViewAchievements?: () => void;
 }
 
-export function HomeScreen({ userProgress, onStartQuiz }: HomeScreenProps) {
+export function HomeScreen({ userProgress, onStartQuiz, onViewAchievements }: HomeScreenProps) {
   const formatNumber = (num: number) => {
     return new Intl.NumberFormat().format(num);
   };
@@ -59,6 +60,13 @@ export function HomeScreen({ userProgress, onStartQuiz }: HomeScreenProps) {
         <Card variant="outlined" padding="medium">
           <LevelIndicator totalPoints={userProgress.totalPoints} showProgress size="medium" />
         </Card>
+
+        {/* Achievements button */}
+        {onViewAchievements && (
+          <Button variant="secondary" size="large" fullWidth onClick={onViewAchievements}>
+            🏆 View Achievements
+          </Button>
+        )}
 
         {/* Quiz mode selection */}
         <div className="home-screen__modes">

@@ -1,0 +1,101 @@
+/**
+ * Achievements screen styles
+ */
+
+.achievements-screen {
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  padding: var(--space-4);
+}
+
+.achievements-screen__container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.achievements-screen__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.achievements-screen__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin: 0;
+  text-align: center;
+}
+
+.achievements-screen__stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+}
+
+.achievements-screen__count {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.achievements-screen__completion {
+  font-weight: var(--font-weight-medium);
+}
+
+.achievements-screen__filters {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.achievements-screen__filter {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.achievements-screen__filter:hover {
+  background-color: var(--color-border);
+}
+
+.achievements-screen__filter--active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.achievements-screen__filter--active:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .achievements-screen {
+    padding: var(--space-6);
+  }
+
+  .achievements-screen__header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .achievements-screen__title {
+    text-align: left;
+    flex: 1;
+  }
+}

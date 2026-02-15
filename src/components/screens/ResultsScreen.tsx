@@ -3,18 +3,24 @@
  * Displays quiz results and statistics
  */
 
+import { useState } from 'react';
 import type { QuizStats } from '../../types/quiz.types';
+import type { Achievement } from '../../types/gamification.types';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
+import { Modal } from '../ui/Modal';
+import { AchievementCard } from '../gamification/AchievementCard';
 import './ResultsScreen.css';
 
 export interface ResultsScreenProps {
   stats: QuizStats;
   onRetry: () => void;
   onHome: () => void;
+  newlyUnlockedAchievements?: Achievement[];
 }
 
-export function ResultsScreen({ stats, onRetry, onHome }: ResultsScreenProps) {
+export function ResultsScreen({ stats, onRetry, onHome, newlyUnlockedAchievements = [] }: ResultsScreenProps) {
+  const [showAchievementModal, setShowAchievementModal] = useState(newlyUnlockedAchievements.length > 0);
   const formatTime = (seconds: number) => {
     return `${seconds.toFixed(1)}s`;
   };
@@ -124,6 +130,32 @@ export function ResultsScreen({ stats, onRetry, onHome }: ResultsScreenProps) {
             Back to Home
           </Button>
         </div>
+
+        {/* Achievement unlock modal */}
+        <Modal
+          isOpen={showAchievementModal}
+          onClose={() => setShowAchievementModal(false)}
+          title="🎉 Achievement Unlocked!"
+          size="medium"
+        >
+          <div className="results-screen__achievements">
+            {newlyUnlockedAchievements.map(achievement => (
+              <AchievementCard
+                key={achievement.id}
+                achievement={achievement}
+                showProgress={false}
+              />
+            ))}
+            <Button
+              variant="primary"
+              size="large"
+              fullWidth
+              onClick={() => setShowAchievementModal(false)}
+            >
+              Awesome!
+            </Button>
+          </div>
+        </Modal>
       </div>
     </div>
   );
