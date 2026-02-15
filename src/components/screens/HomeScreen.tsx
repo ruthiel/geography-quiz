@@ -3,8 +3,8 @@
  * Displays welcome message, stats, and quiz mode selection
  */
 
-import { QuizMode } from '../../types/quiz.types';
-import { UserProgress } from '../../types/user.types';
+import type { QuizMode } from '../../types/quiz.types';
+import type { UserProgress } from '../../types/user.types';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import './HomeScreen.css';

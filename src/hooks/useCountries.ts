@@ -3,7 +3,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { NormalizedCountry } from '../types/country.types';
+import type { NormalizedCountry } from '../types/country.types';
 import { fetchCountries } from '../services/api/countriesApi';
 
 interface UseCountriesResult {

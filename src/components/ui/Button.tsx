@@ -3,7 +3,7 @@
  * Meets WCAG 2.1 Level AAA touch target size (44x44px minimum)
  */
 
-import { ReactNode, ButtonHTMLAttributes } from 'react';
+import type { ReactNode, ButtonHTMLAttributes } from 'react';
 import './Button.css';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

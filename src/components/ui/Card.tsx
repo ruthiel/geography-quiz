@@ -2,7 +2,7 @@
  * Card container component for content grouping
  */
 
-import { ReactNode, HTMLAttributes } from 'react';
+import type { ReactNode, HTMLAttributes } from 'react';
 import './Card.css';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {

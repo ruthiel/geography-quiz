@@ -3,7 +3,7 @@
  * API Documentation: https://restcountries.com/
  */
 
-import { Country, NormalizedCountry } from '../../types/country.types';
+import type { Country, NormalizedCountry } from '../../types/country.types';
 import { apiCache } from './apiCache';
 import { STORAGE_KEYS } from '../storage/storageKeys';
 

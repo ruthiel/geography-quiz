@@ -3,7 +3,7 @@
  * Displays the current question with flag image or text
  */
 
-import { QuizQuestion } from '../../types/quiz.types';
+import type { QuizQuestion } from '../../types/quiz.types';
 import { Card } from '../ui/Card';
 import './QuizCard.css';
 

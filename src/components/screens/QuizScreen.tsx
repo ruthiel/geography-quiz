@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { QuizMode } from '../../types/quiz.types';
+import type { QuizMode } from '../../types/quiz.types';
 import { useQuiz } from '../../hooks/useQuiz';
 import { useCountries } from '../../hooks/useCountries';
 import { QuizCard } from '../quiz/QuizCard';

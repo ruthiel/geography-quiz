@@ -2,8 +2,8 @@
  * User progress and statistics tracking
  */
 
-import { Achievement, Streak } from './gamification.types';
-import { QuizMode } from './quiz.types';
+import type { Achievement, Streak } from './gamification.types';
+import type { QuizMode } from './quiz.types';
 
 export interface ModeStats {
   totalQuizzes: number;
