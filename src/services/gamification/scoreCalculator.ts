@@ -83,3 +83,14 @@ export function getStreakMultiplier(streak: number): number {
   if (streak >= 5) return 2;
   return 1;
 }
+
+/**
+ * Get streak tier name for display
+ */
+export function getStreakTier(streak: number): string {
+  if (streak >= 20) return 'Legendary';
+  if (streak >= 15) return 'Epic';
+  if (streak >= 10) return 'Great';
+  if (streak >= 5) return 'Good';
+  return 'Building';
+}

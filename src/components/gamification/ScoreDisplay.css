@@ -1,0 +1,43 @@
+/**
+ * Score display styles
+ */
+
+.score-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.score-display__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.score-display__value {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sizes */
+.score-display--small .score-display__label {
+  font-size: var(--font-size-xs);
+}
+
+.score-display--small .score-display__value {
+  font-size: var(--font-size-xl);
+}
+
+.score-display--large .score-display__label {
+  font-size: var(--font-size-base);
+}
+
+.score-display--large .score-display__value {
+  font-size: 4rem;
+}

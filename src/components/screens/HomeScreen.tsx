@@ -7,6 +7,7 @@ import type { QuizMode } from '../../types/quiz.types';
 import type { UserProgress } from '../../types/user.types';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
+import { LevelIndicator } from '../gamification/LevelIndicator';
 import './HomeScreen.css';
 
 export interface HomeScreenProps {
@@ -52,6 +53,11 @@ export function HomeScreen({ userProgress, onStartQuiz }: HomeScreenProps) {
               <div className="home-screen__stat-label">Quizzes Taken</div>
             </div>
           </div>
+        </Card>
+
+        {/* Level progress */}
+        <Card variant="outlined" padding="medium">
+          <LevelIndicator totalPoints={userProgress.totalPoints} showProgress size="medium" />
         </Card>
 
         {/* Quiz mode selection */}

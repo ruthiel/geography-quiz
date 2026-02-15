@@ -1,0 +1,101 @@
+/**
+ * Streak counter styles
+ */
+
+.streak-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+  color: white;
+  box-shadow: var(--shadow-md);
+  animation: streakPulse 2s ease-in-out infinite;
+}
+
+.streak-counter__icon {
+  font-size: var(--font-size-xl);
+  line-height: 1;
+}
+
+.streak-counter__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.streak-counter__count {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+.streak-counter__multiplier {
+  font-size: var(--font-size-xs);
+  opacity: 0.9;
+  line-height: 1;
+}
+
+/* Tier colors */
+.streak-counter--good {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+}
+
+.streak-counter--great {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+.streak-counter--epic {
+  background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+}
+
+.streak-counter--legendary {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  animation: streakPulse 1s ease-in-out infinite;
+}
+
+/* Sizes */
+.streak-counter--small {
+  padding: var(--space-1) var(--space-3);
+}
+
+.streak-counter--small .streak-counter__icon {
+  font-size: var(--font-size-lg);
+}
+
+.streak-counter--small .streak-counter__count {
+  font-size: var(--font-size-sm);
+}
+
+.streak-counter--small .streak-counter__multiplier {
+  font-size: 0.625rem;
+}
+
+.streak-counter--large {
+  padding: var(--space-3) var(--space-5);
+}
+
+.streak-counter--large .streak-counter__icon {
+  font-size: var(--font-size-2xl);
+}
+
+.streak-counter--large .streak-counter__count {
+  font-size: var(--font-size-lg);
+}
+
+.streak-counter--large .streak-counter__multiplier {
+  font-size: var(--font-size-sm);
+}
+
+/* Pulse animation */
+@keyframes streakPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-md);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+}
