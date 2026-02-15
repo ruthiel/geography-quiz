@@ -1,0 +1,85 @@
+/**
+ * Level indicator styles
+ */
+
+.level-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.level-indicator__badge {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+}
+
+.level-indicator__number {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+}
+
+.level-indicator__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.level-indicator__name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.level-indicator__progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: var(--space-1);
+}
+
+.level-indicator__progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
+}
+
+.level-indicator__next {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Sizes */
+.level-indicator--small .level-indicator__badge {
+  width: 36px;
+  height: 36px;
+}
+
+.level-indicator--small .level-indicator__number {
+  font-size: var(--font-size-lg);
+}
+
+.level-indicator--small .level-indicator__name {
+  font-size: var(--font-size-sm);
+}
+
+.level-indicator--large .level-indicator__badge {
+  width: 64px;
+  height: 64px;
+}
+
+.level-indicator--large .level-indicator__number {
+  font-size: var(--font-size-3xl);
+}
+
+.level-indicator--large .level-indicator__name {
+  font-size: var(--font-size-lg);
+}

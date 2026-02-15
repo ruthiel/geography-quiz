@@ -6,12 +6,13 @@ import { useState, useEffect, useCallback } from 'react';
 import type { QuizMode, QuizQuestion, QuizAnswer, QuizSession, QuizStats } from '../types/quiz.types';
 import type { NormalizedCountry } from '../types/country.types';
 import { generateQuiz } from '../utils/quizGenerator';
-import { calculateScore } from '../services/gamification/scoreCalculator';
+import { calculateScore, getStreakMultiplier } from '../services/gamification/scoreCalculator';
 
 interface UseQuizParams {
   countries: NormalizedCountry[];
   mode: QuizMode;
   questionCount?: number;
+  currentStreak?: number;
 }
 
 interface UseQuizResult {
@@ -26,7 +27,7 @@ interface UseQuizResult {
   stats: QuizStats | null;
 }
 
-export function useQuiz({ countries, mode, questionCount = 10 }: UseQuizParams): UseQuizResult {
+export function useQuiz({ countries, mode, questionCount = 10, currentStreak = 0 }: UseQuizParams): UseQuizResult {
   const [session, setSession] = useState<QuizSession | null>(null);
   const [stats, setStats] = useState<QuizStats | null>(null);
 
@@ -79,11 +80,12 @@ export function useQuiz({ countries, mode, questionCount = 10 }: UseQuizParams):
 
     const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
 
-    // Calculate points (streak multiplier will be added later in gamification phase)
+    // Calculate points with streak multiplier
+    const streakMultiplier = getStreakMultiplier(currentStreak);
     const scoreResult = calculateScore({
       isCorrect,
       timeSpent,
-      streakMultiplier: 1, // Will be dynamic in Phase 4
+      streakMultiplier,
     });
 
     const answer: QuizAnswer = {

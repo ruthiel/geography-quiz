@@ -9,6 +9,7 @@ import type { UserProgress } from '../types/user.types';
 import { createDefaultUserProgress } from '../types/user.types';
 import type { QuizStats } from '../types/quiz.types';
 import { STORAGE_KEYS } from '../services/storage/storageKeys';
+import { getLevelByPoints } from '../constants/levels';
 
 interface UseUserProgressResult {
   userProgress: UserProgress;
@@ -49,9 +50,13 @@ export function useUserProgress(): UseUserProgressResult {
               ),
       };
 
+      const newTotalPoints = prev.totalPoints + stats.totalPoints;
+      const newLevel = getLevelByPoints(newTotalPoints);
+
       return {
         ...prev,
-        totalPoints: prev.totalPoints + stats.totalPoints,
+        totalPoints: newTotalPoints,
+        currentLevel: newLevel.level,
         totalQuizzes: prev.totalQuizzes + 1,
         lastPlayedAt: Date.now(),
         modeStats: {

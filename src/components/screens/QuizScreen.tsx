@@ -7,10 +7,13 @@ import { useState, useEffect } from 'react';
 import type { QuizMode } from '../../types/quiz.types';
 import { useQuiz } from '../../hooks/useQuiz';
 import { useCountries } from '../../hooks/useCountries';
+import { useStreak } from '../../hooks/useStreak';
 import { QuizCard } from '../quiz/QuizCard';
 import { QuizOptions } from '../quiz/QuizOptions';
 import { QuizProgress } from '../quiz/QuizProgress';
 import { QuizResult } from '../quiz/QuizResult';
+import { StreakCounter } from '../gamification/StreakCounter';
+import { ScoreDisplay } from '../gamification/ScoreDisplay';
 import { Button } from '../ui/Button';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
 import './QuizScreen.css';
@@ -23,6 +26,8 @@ export interface QuizScreenProps {
 
 export function QuizScreen({ mode, onComplete, onExit }: QuizScreenProps) {
   const { countries, loading: loadingCountries, error } = useCountries();
+  const { streaks, updateCorrectStreak, updateDailyStreak, resetCorrectStreak } = useStreak();
+
   const {
     currentQuestion,
     currentQuestionIndex,
@@ -31,11 +36,18 @@ export function QuizScreen({ mode, onComplete, onExit }: QuizScreenProps) {
     submitAnswer,
     nextQuestion,
     stats,
-  } = useQuiz({ countries, mode, questionCount: 10 });
+    session,
+  } = useQuiz({ countries, mode, questionCount: 10, currentStreak: streaks.correct.current });
 
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showResult, setShowResult] = useState(false);
   const [answerStartTime, setAnswerStartTime] = useState(Date.now());
+
+  // Initialize daily streak on mount
+  useEffect(() => {
+    updateDailyStreak();
+    resetCorrectStreak();
+  }, [updateDailyStreak, resetCorrectStreak]);
 
   // Reset state when question changes
   useEffect(() => {
@@ -60,6 +72,12 @@ export function QuizScreen({ mode, onComplete, onExit }: QuizScreenProps) {
 
     // Calculate time spent
     const timeSpent = (Date.now() - answerStartTime) / 1000; // Convert to seconds
+
+    // Check if answer is correct
+    const isCorrect = option === currentQuestion.correctAnswer;
+
+    // Update streak
+    updateCorrectStreak(isCorrect);
 
     // Submit answer
     submitAnswer(option, timeSpent);
@@ -101,16 +119,21 @@ export function QuizScreen({ mode, onComplete, onExit }: QuizScreenProps) {
   }
 
   // Find current answer if submitted
-  const currentAnswer = showResult
-    ? {
-        isCorrect: selectedOption === currentQuestion.correctAnswer,
-        pointsEarned: 100, // This will be calculated properly in useQuiz
-      }
+  const currentAnswer = showResult && session
+    ? session.answers[session.answers.length - 1]
     : null;
 
   return (
     <div className="quiz-screen">
       <div className="quiz-screen__container">
+        {/* Gamification stats */}
+        <div className="quiz-screen__stats">
+          <ScoreDisplay score={session?.totalPoints || 0} label="Score" size="small" />
+          {streaks.correct.current > 0 && (
+            <StreakCounter streak={streaks.correct.current} size="small" />
+          )}
+        </div>
+
         {/* Progress indicator */}
         <QuizProgress
           currentQuestion={currentQuestionIndex + 1}
