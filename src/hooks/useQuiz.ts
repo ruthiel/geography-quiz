@@ -2,7 +2,7 @@
  * Core quiz session management hook
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type { QuizMode, QuizQuestion, QuizAnswer, QuizSession, QuizStats } from '../types/quiz.types';
 import type { NormalizedCountry } from '../types/country.types';
 import { generateQuiz } from '../utils/quizGenerator';
@@ -57,9 +57,9 @@ export function useQuiz({ countries, mode, questionCount = 10 }: UseQuizParams):
   }, [countries, mode, questionCount]);
 
   // Initialize on mount or when dependencies change
-  useState(() => {
+  useEffect(() => {
     initializeQuiz();
-  });
+  }, [initializeQuiz]);
 
   const currentQuestion = session
     ? session.questions[session.currentQuestionIndex] ?? null
