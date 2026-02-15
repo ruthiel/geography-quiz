@@ -30,6 +30,8 @@
   overflow: hidden;
   box-shadow: var(--shadow-md);
   border: 2px solid var(--color-border);
+  position: relative;
+  background-color: var(--color-surface);
 }
 
 .quiz-card__image {
@@ -37,6 +39,17 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: opacity var(--transition-base);
+}
+
+/* Loading placeholder */
+.quiz-card__image:not([src]),
+.quiz-card__image[src=""] {
+  opacity: 0;
+}
+
+.quiz-card__image[src]:not([src=""]) {
+  animation: fadeIn var(--transition-base);
 }
 
 /* Responsive adjustments */

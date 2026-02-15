@@ -20,7 +20,7 @@
 .results-screen__header {
   text-align: center;
   margin-bottom: var(--space-8);
-  animation: fadeIn var(--transition-base);
+  animation: slideInDown var(--transition-base);
 }
 
 .results-screen__title {
@@ -39,7 +39,7 @@
 /* Score card */
 .results-screen__score-card {
   margin-bottom: var(--space-6);
-  animation: fadeIn var(--transition-base) 0.1s;
+  animation: scaleIn var(--transition-base) 0.2s;
 }
 
 .results-screen__score {
@@ -110,7 +110,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
-  animation: fadeIn var(--transition-base) 0.2s;
+  animation: slideInUp var(--transition-base) 0.3s;
 }
 
 .results-screen__stat {
@@ -149,7 +149,7 @@
   flex-direction: column;
   gap: var(--space-3);
   margin-top: var(--space-8);
-  animation: fadeIn var(--transition-base) 0.3s;
+  animation: slideInUp var(--transition-base) 0.4s;
 }
 
 /* Animations */

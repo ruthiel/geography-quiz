@@ -18,8 +18,12 @@ export function QuizResult({
   correctAnswer,
 }: QuizResultProps) {
   return (
-    <div className={`quiz-result quiz-result--${isCorrect ? 'correct' : 'incorrect'}`}>
-      <div className="quiz-result__icon">
+    <div
+      className={`quiz-result quiz-result--${isCorrect ? 'correct' : 'incorrect'}`}
+      role="alert"
+      aria-live="assertive"
+    >
+      <div className="quiz-result__icon" aria-hidden="true">
         {isCorrect ? '✓' : '✗'}
       </div>
       <div className="quiz-result__content">

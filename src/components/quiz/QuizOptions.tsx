@@ -45,22 +45,38 @@ export function QuizOptions({
 
   return (
     <div className="quiz-options">
-      {options.map((option, index) => (
-        <Button
-          key={`${option}-${index}`}
-          variant={getOptionVariant(option)}
-          size="large"
-          fullWidth
-          onClick={() => onSelectOption(option)}
-          disabled={isOptionDisabled(option)}
-          className="quiz-options__button"
-        >
-          <span className="quiz-options__letter">
-            {String.fromCharCode(65 + index)}
-          </span>
-          <span className="quiz-options__text">{option}</span>
-        </Button>
-      ))}
+      {options.map((option, index) => {
+        const letter = String.fromCharCode(65 + index);
+        const isSelected = option === selectedOption;
+        const isCorrectAnswer = correctAnswer && option === correctAnswer;
+        const isWrongAnswer = correctAnswer && isSelected && option !== correctAnswer;
+
+        let ariaLabel = `Option ${letter}: ${option}`;
+        if (isCorrectAnswer) {
+          ariaLabel += ' - Correct answer';
+        } else if (isWrongAnswer) {
+          ariaLabel += ' - Incorrect answer';
+        }
+
+        return (
+          <Button
+            key={`${option}-${index}`}
+            variant={getOptionVariant(option)}
+            size="large"
+            fullWidth
+            onClick={() => onSelectOption(option)}
+            disabled={isOptionDisabled(option)}
+            className="quiz-options__button"
+            aria-label={ariaLabel}
+            aria-pressed={isSelected}
+          >
+            <span className="quiz-options__letter" aria-hidden="true">
+              {letter}
+            </span>
+            <span className="quiz-options__text">{option}</span>
+          </Button>
+        );
+      })}
     </div>
   );
 }

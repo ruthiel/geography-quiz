@@ -10,6 +10,7 @@ import { useUserProgress } from './hooks/useUserProgress';
 import { useAchievements } from './hooks/useAchievements';
 import { useStreak } from './hooks/useStreak';
 import { useLeaderboard } from './hooks/useLeaderboard';
+import { ErrorBoundary } from './components/ui/ErrorBoundary';
 import { AppLayout } from './components/layout/AppLayout';
 import { HomeScreen } from './components/screens/HomeScreen';
 import { QuizScreen } from './components/screens/QuizScreen';
@@ -73,11 +74,12 @@ function App() {
   };
 
   return (
-    <AppLayout
-      showHeader={currentScreen !== 'quiz'}
-      totalPoints={userProgress.totalPoints}
-      currentLevel={userProgress.currentLevel}
-    >
+    <ErrorBoundary>
+      <AppLayout
+        showHeader={currentScreen !== 'quiz'}
+        totalPoints={userProgress.totalPoints}
+        currentLevel={userProgress.currentLevel}
+      >
       {currentScreen === 'home' && (
         <HomeScreen
           userProgress={userProgress}
@@ -119,7 +121,8 @@ function App() {
           onBack={handleGoHome}
         />
       )}
-    </AppLayout>
+      </AppLayout>
+    </ErrorBoundary>
   );
 }
 

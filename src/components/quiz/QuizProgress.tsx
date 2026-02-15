@@ -13,13 +13,20 @@ export interface QuizProgressProps {
 
 export function QuizProgress({ currentQuestion, totalQuestions }: QuizProgressProps) {
   return (
-    <div className="quiz-progress">
+    <div className="quiz-progress" role="status" aria-live="polite">
       <div className="quiz-progress__header">
         <h2 className="quiz-progress__title">
           Question {currentQuestion} of {totalQuestions}
         </h2>
       </div>
-      <ProgressBar current={currentQuestion} total={totalQuestions} showLabel={false} />
+      <ProgressBar
+        current={currentQuestion}
+        total={totalQuestions}
+        showLabel={false}
+      />
+      <span className="sr-only">
+        Question {currentQuestion} of {totalQuestions}
+      </span>
     </div>
   );
 }

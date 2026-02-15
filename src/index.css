@@ -8,3 +8,6 @@
 
 /* Import global styles and reset */
 @import './styles/global.css';
+
+/* Import animations */
+@import './styles/animations.css';
