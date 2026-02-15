@@ -67,8 +67,15 @@ function generateQuestion(
   let question = '';
   let correctAnswer = '';
   let imageUrl: string | undefined;
+  let actualMode = mode;
 
-  switch (mode) {
+  // For mixed mode, randomly select a question type
+  if (mode === 'mixed') {
+    const modes: Array<'flags' | 'capitals' | 'currencies'> = ['flags', 'capitals', 'currencies'];
+    actualMode = modes[Math.floor(Math.random() * modes.length)];
+  }
+
+  switch (actualMode) {
     case 'flags':
       question = 'Which country does this flag belong to?';
       correctAnswer = country.name;
@@ -91,8 +98,8 @@ function generateQuestion(
       return null;
   }
 
-  // Generate 3 wrong options
-  const wrongOptions = generateWrongOptions(allCountries, country, mode);
+  // Generate 3 wrong options using the actual mode
+  const wrongOptions = generateWrongOptions(allCountries, country, actualMode as 'flags' | 'capitals' | 'currencies');
 
   // Need exactly 3 wrong options
   if (wrongOptions.length < 3) {
@@ -103,8 +110,8 @@ function generateQuestion(
   const options = shuffleArray([correctAnswer, ...wrongOptions]);
 
   return {
-    id: `q-${mode}-${country.code}-${index}`,
-    mode,
+    id: `q-${actualMode}-${country.code}-${index}`,
+    mode: actualMode as QuizMode,
     countryCode: country.code,
     countryName: country.name,
     question,
