@@ -102,7 +102,7 @@ npm run lint
 
 ### Deployment
 
-The app is automatically deployed to GitHub Pages via GitHub Actions whenever changes are pushed to the `master` branch.
+The app is automatically deployed to GitHub Pages via GitHub Actions whenever changes are pushed to the `main` branch.
 
 **Live URL**: [https://ruthiel.github.io/geography-quiz/](https://ruthiel.github.io/geography-quiz/)
 

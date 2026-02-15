@@ -72,7 +72,7 @@ npm run preview
 
 **Live URL**: [https://ruthiel.github.io/geography-quiz/](https://ruthiel.github.io/geography-quiz/)
 
-**Deployment Method**: Automatic deployment via GitHub Actions on push to `master` branch
+**Deployment Method**: Automatic deployment via GitHub Actions on push to `main` branch
 
 **Configuration**:
 - Base path set in `vite.config.ts`: `/geography-quiz/`
@@ -80,7 +80,7 @@ npm run preview
 - GitHub Pages settings: Source = GitHub Actions
 
 **Deployment Process**:
-1. Push changes to `master` branch
+1. Push changes to `main` branch
 2. GitHub Actions automatically runs build
 3. Deploys to GitHub Pages (2-3 minutes)
 
